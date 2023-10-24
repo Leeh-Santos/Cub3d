@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cubed.h                                            :+:      :+:    :+:   */
+/*   get_next.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 18:42:08 by learodri          #+#    #+#             */
-/*   Updated: 2023/10/24 15:23:52 by learodri@st      ###   ########.fr       */
+/*   Created: 2023/10/24 12:22:47 by learodri@st       #+#    #+#             */
+/*   Updated: 2023/10/24 12:44:57 by learodri@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUB3D_H
-# define CUB3D_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <stdio.h>
 # include <stdlib.h>
-# include <math.h>
-# include <sys/time.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "get_next.h"
 
-typedef struct s_cu
-{
-    char **map;
-}t_cu;
+#define BUFFER_SIZE 1
 
-void	boom(char *str);
+char		*get_next_line(int fd);
+size_t		ft_strlen(const char *word);
+char		*ft_strjoin(char const *s1, char const *s2);
+void		*ft_memset(void *b, int c, size_t len);
+char		*cpyfrm2(char *str, int i, int end);
 
 
-# endif
+
+#endif
