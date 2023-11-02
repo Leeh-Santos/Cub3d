@@ -6,7 +6,7 @@
 /*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:20 by learodri          #+#    #+#             */
-/*   Updated: 2023/10/25 20:56:16 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/11/02 15:11:13 by learodri@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int map_started(char *str)
 		printf("\n\n parou aqui first %c \n", str[i]);
 		return (1);
 	}
-	if (str[0] == ' ')
+	if (str[0] == ' ') // cuidado com os \n
 	{
 		i++;
 		while (str[i])
@@ -53,17 +53,11 @@ void	init_vars()
 	cu()->vars[1] = NULL;
 	cu()->vars[2] = NULL;
 	cu()->vars[3] = NULL;
-	cu()->c[0] = -1;
-	cu()->c[1] = 0;
-	cu()->c[2] = 0;
-	cu()->c[3] = 0;
-	cu()->f[0] = -1;
-	cu()->f[1] = 0;
-	cu()->f[2] = 0;
-	cu()->f[3] = 0;
+	cu()->c = -1;
+	cu()->f = -1;
 }
 
-char	*subs(int start, char *str)
+char	*subs(int start, char *str)// \n aqui
 {
 	int	i;
 	char	*newstr;
@@ -72,7 +66,7 @@ char	*subs(int start, char *str)
 	newstr = malloc(sizeof(char) * ft_strlen(str) - start);
 	if (!newstr)
 		return (NULL);
-	while (str[start])
+	while (str[start] && (str[start] != '\n')) //nmb\n aqui
 	{
 		newstr[i] = str[start];
 		start++;
@@ -95,23 +89,77 @@ void		extract_var(char *str, int var)
 	
 }
 
+void	check_rgbt(char **mtx, int f_c)
+{
+	int	r;
+	int	g;
+	int	b;
+	
+	r = ft_atoi(mtx[0]);
+	g = ft_atoi(mtx[1]);
+	b = ft_atoi(mtx[2]);
+	
+	if (r < 0 || g < 0 || b < 0 || r > 255 || g > 255 || b > 255)
+	{
+		free_matrix(mtx);
+		printf("r - %d   g - %d   b - %d\n", r, g, b);
+		boom("valor rgbt maior ou menor\n");
+	}
+	
+	if (f_c == 1)
+		cu()->c = (r << 16) + (g << 8) + b;
+	if (f_c == 2)
+		cu()->f = (r << 16) + (g << 8) + b;
+}
+
 void	extract_rgb(int f_c, char *str)
 {
-	int i;
+	int		i;
+	char	*tmp;
+	char	**rg;
 	
 	if (f_c == 1)
 	{
-		if (cu()->c[0] != -1)
-			boom("ja tem var c ou f");
+		if (cu()->c != -1)
+			boom("ja tem var c ou f\n");
 	}
 	if (f_c == 2)
 	{
-		if (cu()->f[0] != -1)
-			boom("ja tem var c ou f");
+		if (cu()->f != -1)
+			boom("ja tem var c ou f\n");
 	}
 	i = 2;
 	while (str[i] && str[i] == ' ')
 		i++;
+	tmp = subs(i, str);
+	printf(" esse foi de antes%s '/n' ", tmp);
+	i = 0;
+	while (tmp[i])
+	{
+		if (tmp[i] == ',' || tmp[i] == '\n')
+		{
+			i++;
+			continue;
+		}
+		if (!ft_isdigit(tmp[i]))
+		{
+			printf("%c", tmp[i]);
+			boom("numero no rgbt+\n");
+		}
+		i++;
+	}
+	rg = ft_split(tmp, ',');
+	free (tmp);
+	i = 0;
+	while (rg[i])
+		i++;
+	if (i != 3)
+	{
+		boom("rgbt ta diferente de tres\n");
+		free_matrix(rg);
+	}
+	check_rgbt(rg, f_c);
+	
 }
 
 void	get_var(char *str)
@@ -155,7 +203,7 @@ void	search_vars(char **mtx)
 		i++;
 	}	
 	print_var();
-	//check_vars
+	//check_vars se null as 3
 }
 
 void	print_file(char **mtx)
@@ -180,11 +228,11 @@ void	print_file(char **mtx)
 
 char	**extract_file(char **map, int fd, int counter)
 {
-	if (cu()->map)
-		free(cu()->map);
-		
+	
 	char	*str;
 
+	if (cu()->map)
+		free(cu()->map);
 	str = get_next_line(fd);
 	if (str)
 		map = extract_file(map, fd, counter + 1);
@@ -211,7 +259,7 @@ void check_4_parse(char *cufile)
 	if (fd == -1)
 	{
 		close(fd);
-		boom("no able to open your cu      b3d");
+		boom("no able to open your cu           b3d file");
 	}
 	cu()->map = extract_file(NULL, fd, 0);
 	if (!cu()->map)
@@ -221,11 +269,6 @@ void check_4_parse(char *cufile)
 	print_file(cu()->map);
 }
 
-void	boom(char *str)
-{
-	printf("%s\n", str);
-	exit(1);
-}
 
 int	main(int argc, char *argv[])
 {
