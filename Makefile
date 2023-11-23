@@ -6,7 +6,7 @@
 #    By: learodri@student.42.fr <learodri>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 12:24:03 by learodri@st       #+#    #+#              #
-#    Updated: 2023/10/31 16:29:48 by learodri@st      ###   ########.fr        #
+#    Updated: 2023/11/02 21:07:59 by learodri@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,11 @@ SRCS	= main.c \
 		  get_next/gnl.c \
 		  get_next/gnl_utils.c \
 		  cfilesdump/free_err.c \
-		  libft/libft.c
+		  libft/libft.c \
+		  parsing/varparse.c \
+		  parsing/varparse2.c \
+		  parsing/varparse3.c \
+		  libft/libft2.c \
 
 OBJS	= $(SRCS:.c=.o)
 

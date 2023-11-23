@@ -1,0 +1,1 @@
+VARS - ./textures/Wall_N.xpm - se tem um espaco depois o open nao abre, tambem da merda no F C
