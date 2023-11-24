@@ -6,7 +6,7 @@
 /*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:20 by learodri          #+#    #+#             */
-/*   Updated: 2023/11/23 21:22:56 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/11/24 16:56:22 by learodri@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,74 @@ t_cu *cu(void)
     return (&cu);
 }
 
+int		player_ta_fixe(char **mtx)
+{
+	int	p;
+	int	i;
+	int	k;
+	
+	p = 0;
+	i = 0;
+	k = 0;
+	while (mtx[i])
+	{
+		k = 0;
+		while (mtx[i][k])
+		{
+			if (mtx[i][k] == 'N' || mtx[i][k] == 'S' || mtx[i][k] == 'L' || mtx[i][k] == 'O')
+				p++;
+			k++;
+		}
+		i++;
+	}
+	if (p != 1)
+	{
+		printf("more than one player meu parceiro\n");
+		return (0);
+	}
+	return (1);
+}
 
-/*int		check_map(char **mtx)
+int		invalid_char(char *mtx)
+{
+	int	i;
+
+	i = 0;
+	while (mtx[i])
+	{
+		if ((mtx[i] != '0') && (mtx[i] != '1') && (mtx[i] != 'N') && (mtx[i] != 'S') && (mtx[i] != 'L') && (mtx[i] != 'O') && (mtx[i] != '\n') && (mtx[i] != ' '))
+		{
+			printf("invalid char in the map meu parceiro %c\n", mtx[i]);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+/*int		invalid_map(char **mtx)
+{
+	
+}*/
+
+int		check_map(char **mtx)
 {
 	int i;
 
 	i = 0;
 
-	if (!player_ta_fixe(mtx)) 	// int = p; se for N S L O,  p++ TEM Q SER 1
+	if (!player_ta_fixe(mtx))
 		return (1);
-		
-	while (mtx[i]) // mandar str por str para ver invalid char
+	while (mtx[i])
 	{
 		if (invalid_char(mtx[i]))
 			return (1);
+		i++;
 	}
-	// cruz dos zeros aqui
-}*/
+	/*if (invalid_map(mtx))
+		return (1)*/
+	return (0);
+}
 
 void	map_parse(char **mtx) //ate aqui nao pode ter bo com as var ou map, somente pega a parte do mapa
 {
@@ -77,8 +128,8 @@ int	main(int argc, char *argv[])
 		boom("deu ruim nos args");
 	check_4_parse(argv[1]);
 	map_parse(cu()->map);
-	/*if (check_map(cu()->o_mp))
-		boom("missconfig on the map");*/
+	if (check_map(cu()->o_mp))
+		boom("missconfig on the map");
 	
 
 	return 0;

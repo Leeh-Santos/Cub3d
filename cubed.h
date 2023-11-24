@@ -6,7 +6,7 @@
 /*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:42:08 by learodri          #+#    #+#             */
-/*   Updated: 2023/11/02 21:15:32 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/11/24 16:15:38 by learodri@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ void	check_4_parse(char *cufile);
 void	vars_all_good(void);
 void	get_var(char *str);
 char	*subs(int start, char *str);
-void		extract_var(char *str, int var);
+void    extract_var(char *str, int var);
+int		player_ta_fixe(char **mtx);
+int		invalid_char(char *mtx);
 //struct
 
 t_cu *cu(void);
