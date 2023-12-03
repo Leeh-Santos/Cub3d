@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: msimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:42:08 by learodri          #+#    #+#             */
-/*   Updated: 2023/11/24 16:15:38 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/02 08:45:30 by msimoes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	get_var(char *str);
 char	*subs(int start, char *str);
 void    extract_var(char *str, int var);
 int		player_ta_fixe(char **mtx);
-int		invalid_char(char *mtx);
+int		invalid_char(char **mtx);
 //struct
 
 t_cu *cu(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: msimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:20 by learodri          #+#    #+#             */
-/*   Updated: 2023/11/24 16:56:22 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/03 04:42:31 by msimoes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_cu *cu(void)
     return (&cu);
 }
 
-int		player_ta_fixe(char **mtx)
+int		invalid_player(char **mtx)
 {
 	int	p;
 	int	i;
@@ -40,51 +40,69 @@ int		player_ta_fixe(char **mtx)
 		i++;
 	}
 	if (p != 1)
-	{
-		printf("more than one player meu parceiro\n");
 		return (0);
-	}
 	return (1);
 }
 
-int		invalid_char(char *mtx)
+int	invalid_char(char **mtx) {
+    int i;
+	int j;
+	
+	i = 0;
+    while (mtx[i] != NULL)
+	{
+		j = 0;
+        while (mtx[i][j])
+		{
+            if ((mtx[i][j] != '0') && (mtx[i][j] != '1') && (mtx[i][j] != 'N') && (mtx[i][j] != 'S') && (mtx[i][j] != 'L') && (mtx[i][j] != 'O') && (mtx[i][j] != '\n') && (mtx[i][j] != ' '))
+                return 1;
+            j++;
+        }
+        i++;
+    }
+    return 0;
+}
+
+int	invalid_border(char **mtx)
 {
-	int	i;
+	int i;
+	int j;
 
 	i = 0;
 	while (mtx[i])
 	{
-		if ((mtx[i] != '0') && (mtx[i] != '1') && (mtx[i] != 'N') && (mtx[i] != 'S') && (mtx[i] != 'L') && (mtx[i] != 'O') && (mtx[i] != '\n') && (mtx[i] != ' '))
+		j = 0;
+		while (mtx[i][j])
 		{
-			printf("invalid char in the map meu parceiro %c\n", mtx[i]);
-			return (1);
+			if (mtx[i][j] == '0' || mtx[i][j] == 'N' || mtx[i][j] == 'S' || mtx[i][j] == 'E' || mtx[i][j] == 'W')
+			{
+				if (mtx[i][j + 1] == ' ' || mtx[i][j - 1] == ' ' || mtx[i + 1][j] == ' ' || mtx[i - 1][j] == ' ')
+					return (1);
+			}
+			j++;
 		}
 		i++;
 	}
 	return (0);
 }
 
-/*int		invalid_map(char **mtx)
-{
-	
-}*/
-
 int		check_map(char **mtx)
 {
-	int i;
-
-	i = 0;
-
-	if (!player_ta_fixe(mtx))
-		return (1);
-	while (mtx[i])
+	if (!invalid_player(mtx))
 	{
-		if (invalid_char(mtx[i]))
-			return (1);
-		i++;
+		printf("more than one player ou nenhum player meu parceiro\n");
+		return (1);
 	}
-	/*if (invalid_map(mtx))
-		return (1)*/
+	if (invalid_char(mtx))
+	{
+		printf("invalid char in the map meu parceiro\n");
+		return (1);
+	}
+	if (invalid_border(mtx))
+	{
+		printf("invalid border meu parceiro\n");
+		return (1);
+	}
 	return (0);
 }
 
@@ -121,6 +139,7 @@ void	map_parse(char **mtx) //ate aqui nao pode ter bo com as var ou map, somente
 	print_file(cu()->o_mp);
 	
 }
+
 int	main(int argc, char *argv[])
 {
 	
