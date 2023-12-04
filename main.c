@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:20 by learodri          #+#    #+#             */
-/*   Updated: 2023/11/24 16:56:22 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/04 18:07:07 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	map_parse(char **mtx) //ate aqui nao pode ter bo com as var ou map, somente
 		i++;
 		cu()->i_mp++;
 	}
-	cu()->o_mp[i] = '\0';
+	cu()->o_mp[i] = NULL; // nao aceita '\0' no pc da escola
 	print_file(cu()->map);
 	free(cu()->map);
 	printf("\n novo mapa abaixo \n");
