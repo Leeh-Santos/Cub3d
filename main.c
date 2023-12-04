@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:20 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/04 20:51:43 by msimoes-         ###   ########.fr       */
+/*   Updated: 2023/12/04 21:21:25 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		invalid_player(char **mtx)
 		k = 0;
 		while (mtx[i][k])
 		{
-			if (mtx[i][k] == 'N' || mtx[i][k] == 'S' || mtx[i][k] == 'L' || mtx[i][k] == 'O')
+			if (mtx[i][k] == 'N' || mtx[i][k] == 'S' || mtx[i][k] == 'E' || mtx[i][k] == 'W')
 				p++;
 			k++;
 		}
@@ -54,7 +54,7 @@ int	invalid_char(char **mtx) {
 		j = 0;
         while (mtx[i][j])
 		{
-            if ((mtx[i][j] != '0') && (mtx[i][j] != '1') && (mtx[i][j] != 'N') && (mtx[i][j] != 'S') && (mtx[i][j] != 'L') && (mtx[i][j] != 'O') && (mtx[i][j] != '\n') && (mtx[i][j] != ' '))
+            if ((mtx[i][j] != '0') && (mtx[i][j] != '1') && (mtx[i][j] != 'N') && (mtx[i][j] != 'S') && (mtx[i][j] != 'E') && (mtx[i][j] != 'W') && (mtx[i][j] != '\n') && (mtx[i][j] != ' '))
                 return 1;
             j++;
         }
@@ -65,9 +65,13 @@ int	invalid_char(char **mtx) {
 
 char not_content(char c)
 {
-	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	return (0);
+	
+	if ((c != '0') && (c != 'N') && (c != 'S') && (c != 'E') && (c != 'W') && (c != '1'))
+	{
+		printf("\n esse char aqui o - %c\n", c);
+		return (0);
+	}
+	return (1);
 }
 
 int	invalid_border(char **mtx)
@@ -84,7 +88,10 @@ int	invalid_border(char **mtx)
 			if (mtx[i][j] == '0' || mtx[i][j] == 'N' || mtx[i][j] == 'S' || mtx[i][j] == 'E' || mtx[i][j] == 'W')
 			{
 				if (i == 0 || j == 0 || !mtx[i + 1] || !mtx[i][j + 1] || !mtx[i - 1] || !mtx[i][j - 1])
+				{
+					printf("foi aqui essa merda \n");
 					return (1);
+				}
 				if (!not_content(mtx[i][j + 1]) || !not_content(mtx[i][j - 1]) || !not_content(mtx[i + 1][j]) || !not_content(mtx[i - 1][j]))
 					return (1);
 			}
@@ -141,7 +148,7 @@ void	map_parse(char **mtx)
 		i++;
 		cu()->i_mp++;
 	}
-	cu()->o_mp[i] = '\0';
+	cu()->o_mp[i] = 0;
 	print_file(cu()->map);
 	free(cu()->map);
 	printf("\n novo mapa abaixo \n");

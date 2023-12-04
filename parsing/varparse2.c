@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   varparse2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:58:48 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/11/23 21:20:18 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/04 21:30:56 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	extract_rgb(int f_c, char *str)//cealing para 1 e floor para 2
 	i = 2;
 	while (str[i] && str[i] == ' ')
 		i++;
-	tmp = subs(i, str);
+	tmp = subs(i, str); // atencao se a var tiver 255, 25, 5
 	
 	i = 0;
 	while (tmp[i])
@@ -112,7 +112,7 @@ char	*subs(int start, char *str)// \n aqui
 	newstr = malloc(sizeof(char) * ft_strlen(str) - start);
 	if (!newstr)
 		return (NULL);
-	while (str[start] && (str[start] != '\n')) //nmb\n aqui
+	while (str[start] && (str[start] != '\n') && (str[start] != ' ')) //nmb\n aqui
 	{
 		newstr[i] = str[start];
 		start++;
