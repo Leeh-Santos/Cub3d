@@ -6,7 +6,7 @@
 /*   By: msimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:20 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/04 20:32:28 by msimoes-         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:51:43 by msimoes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ int	invalid_char(char **mtx) {
     return 0;
 }
 
+char not_content(char c)
+{
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
+}
+
 int	invalid_border(char **mtx)
 {
 	size_t i;
@@ -78,7 +85,7 @@ int	invalid_border(char **mtx)
 			{
 				if (i == 0 || j == 0 || !mtx[i + 1] || !mtx[i][j + 1] || !mtx[i - 1] || !mtx[i][j - 1])
 					return (1);
-				if (mtx[i][j + 1] == ' ' || mtx[i][j - 1] == ' ' || mtx[i + 1][j] == ' ' || mtx[i - 1][j] == ' ')
+				if (!not_content(mtx[i][j + 1]) || !not_content(mtx[i][j - 1]) || !not_content(mtx[i + 1][j]) || !not_content(mtx[i - 1][j]))
 					return (1);
 			}
 			j++;
