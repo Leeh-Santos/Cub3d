@@ -6,7 +6,7 @@
 /*   By: msimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:20 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/03 04:42:31 by msimoes-         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:32:28 by msimoes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int	invalid_char(char **mtx) {
 
 int	invalid_border(char **mtx)
 {
-	int i;
-	int j;
+	size_t i;
+	size_t j;
 
 	i = 0;
 	while (mtx[i])
@@ -76,6 +76,8 @@ int	invalid_border(char **mtx)
 		{
 			if (mtx[i][j] == '0' || mtx[i][j] == 'N' || mtx[i][j] == 'S' || mtx[i][j] == 'E' || mtx[i][j] == 'W')
 			{
+				if (i == 0 || j == 0 || !mtx[i + 1] || !mtx[i][j + 1] || !mtx[i - 1] || !mtx[i][j - 1])
+					return (1);
 				if (mtx[i][j + 1] == ' ' || mtx[i][j - 1] == ' ' || mtx[i + 1][j] == ' ' || mtx[i - 1][j] == ' ')
 					return (1);
 			}
@@ -106,7 +108,7 @@ int		check_map(char **mtx)
 	return (0);
 }
 
-void	map_parse(char **mtx) //ate aqui nao pode ter bo com as var ou map, somente pega a parte do mapa
+void	map_parse(char **mtx)
 {
 	int i;
 	int tmp;
@@ -149,7 +151,5 @@ int	main(int argc, char *argv[])
 	map_parse(cu()->map);
 	if (check_map(cu()->o_mp))
 		boom("missconfig on the map");
-	
-
 	return 0;
 }
