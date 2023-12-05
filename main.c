@@ -6,7 +6,7 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:20 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/04 21:21:25 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/05 21:31:22 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,14 @@ void	map_parse(char **mtx)
 	
 }
 
+void	prep_and_init()
+{
+	cu()->mlx = mlx_init();
+	cu()->mlx_img = mlx_new_image(cu()->map, WIDTH, HEIGHT);
+	cu()->mlx_data = 
+	
+}
+
 int	main(int argc, char *argv[])
 {
 	
@@ -166,4 +174,5 @@ int	main(int argc, char *argv[])
 	if (check_map(cu()->o_mp))
 		boom("missconfig on the map");
 	return 0;
+	prep_and_init();
 }

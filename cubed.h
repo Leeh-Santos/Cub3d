@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:42:08 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/02 08:45:30 by msimoes-         ###   ########.fr       */
+/*   Updated: 2023/12/05 21:15:06 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <unistd.h>
 # include "get_next.h"
 
+# define WIDTH 1080
+# define HEIGHT 720
+
 typedef enum e_vars
 {
    NO,
@@ -32,12 +35,21 @@ typedef enum e_vars
 
 typedef struct s_cu
 {
-    char **map;
-	char **o_mp;
-	char *vars[4];
-	int	f;
-	int c;
-	int	i_mp;
+    char 	**map;
+	char 	**o_mp;
+	char 	*vars[4];
+	void	*win;
+    void	*mlx;
+	void	*mlx_img;
+	char	*mlx_data;
+	int		size_l;
+	int		endian;
+	int		bits_pixel;
+	int		x;
+	int		y;
+	int		f;
+	int 	c;
+	int		i_mp;
 }t_cu;
 
 
