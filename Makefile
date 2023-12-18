@@ -6,7 +6,7 @@
 #    By: learodri@student.42.fr <learodri>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 12:24:03 by learodri@st       #+#    #+#              #
-#    Updated: 2023/11/02 21:07:59 by learodri@st      ###   ########.fr        #
+#    Updated: 2023/12/18 21:31:54 by learodri@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,36 +14,57 @@ SRCS	= main.c \
 		  get_next/gnl.c \
 		  get_next/gnl_utils.c \
 		  cfilesdump/free_err.c \
+		  cfilesdump/move.c \
+		  cfilesdump/move2.c \
+		  cfilesdump/position.c \
+		  cfilesdump/prep_init.c \
+		  cfilesdump/raycast.c \
+		  cfilesdump/raycast2.c \
 		  libft/libft.c \
 		  parsing/varparse.c \
 		  parsing/varparse2.c \
 		  parsing/varparse3.c \
+		  parsing/map_parse.c \
+		  parsing/map_parse2.c \
 		  libft/libft2.c \
 
 OBJS	= $(SRCS:.c=.o)
 
-NAME	= cub3D
+NAME	= Cub3d
 
 CC		= cc
 
-CFLAGS	= -Wall -Wextra -Werror -g 
+CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
 
 RM		= rm -rf
 
+MLX		=	mlx_linux/libmlx_Linux.a
+
+MLX_LIB_DIR = mlx_linux/
+
+MLX_INCLUDE = -Imlx_linux
+
+MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		$(CC) $(CFLAGS) $^ -o $@
+$(NAME): $(OBJS) $(MLX)
+		$(CC) $(CFLAGS) $^ $(MLX_FLAGS) -o $@
 
-clean:
+$(MLX):
+		make -C mlx_linux
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) $(MLX_INCLUDE) -c $^ -o $@
+
+
+clean: 
 	$(RM) $(OBJS)
+	make clean -C mlx_linux
 
 fclean: clean
 		$(RM) $(NAME) $(OBJS)
 
 re: fclean all
-
-r:
-	make re && make clean && clear && ./philo 5 800 200 200
 
 .PHONY: all clean fclean re
