@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:42:08 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/21 22:10:03 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/21 22:17:24 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_cu
 	int		f;
 	int 	c;
 	int		i_mp;
-	int		flag;
 	double		m_speed;
 	double		r_speed;
 	int			color;
@@ -148,8 +147,13 @@ void	ray_init(void);
 int		key(int key);
 void	endcu(void);
 t_cu *cu(void);
+t_ray *ray(void);
 void	right_cam(void);
 void	left_cam(void);
 void	mouse_act(void);
+void	move_calc(void);
+void	wall_calc(void);
+void	draw_calc(void);
+void	wall_side(void);
 
 # endif
