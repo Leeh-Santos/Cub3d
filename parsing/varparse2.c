@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   varparse2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:58:48 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/04 21:30:56 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:00:46 by learodri@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	check_rgbt(char **mtx, int f_c)
 		cu()->c = (r << 16) + (g << 8) + b;
 	if (f_c == 2)
 		cu()->f = (r << 16) + (g << 8) + b;
+	free_matrix(mtx);
 }
 
 void	extract_rgb(int f_c, char *str)//cealing para 1 e floor para 2
@@ -72,7 +73,7 @@ void	extract_rgb(int f_c, char *str)//cealing para 1 e floor para 2
 		i++;
 	}
 	rg = ft_split(tmp, ',');
-	free (tmp);
+	free(tmp);
 	i = 0;
 	while (rg[i])
 		i++;

@@ -6,7 +6,7 @@
 /*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:00:24 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/18 21:39:59 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/19 12:01:28 by learodri@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,18 @@
 
 void	boom(char *str)
 {
+	int	i;
+
+	i = 0;
 	printf("%s\n", str);
+	while (i <= 3)
+	{
+		if (cu()->vars[i])
+			free(cu()->vars[i]);
+		i++;
+	}
+	free_matrix(cu()->o_mp);
+	// falta o rg talvez
 	exit(1);
 }
 

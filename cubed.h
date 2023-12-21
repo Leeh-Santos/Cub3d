@@ -6,13 +6,17 @@
 /*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:42:08 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/18 17:59:50 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/21 20:31:56 by learodri@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUB3D_H
-# define CUB3D_H
+# ifndef CUBED_H
+# define CUBED_H
 
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include "mlx.h"
+# include <X11/Xlib.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
@@ -20,6 +24,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "get_next.h"
+
 
 # define WIDTH 1080
 # define HEIGHT 720
@@ -127,7 +132,7 @@ int		invalid_char(char **mtx);
 int		check_map(char **mtx);
 int		invalid_border(char **mtx);
 int		invalid_player(char **mtx);
-
+void	map_parse(char **mtx);
 //struct
 
 //render 
