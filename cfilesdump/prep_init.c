@@ -6,7 +6,7 @@
 /*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:08:22 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/12 15:09:08 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/21 22:13:09 by learodri@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,25 @@ void	prep_and_init(void)
 	cu()->color = 0;
 	cu()->flag = 0;
 	mlx_mouse_get_pos(cu()->mlx, cu()->win, &cu()->x, &cu()->y);
+}
+
+void	mouse_act(void)
+{
+	int	x;
+	int	y;
+
+	mlx_mouse_get_pos(cu()->mlx, cu()->win, &x, &y);
+	if (x < (WIDTH / 2))
+	{
+		cu()->r_speed = 0.001;
+		cu()->r_speed = cu()->r_speed * -(x - (WIDTH / 2));
+		left_cam();
+	}
+	else if (x > (WIDTH / 2))
+	{
+		cu()->r_speed = 0.001;
+		cu()->r_speed = cu()->r_speed * (x - (WIDTH / 2));
+		right_cam();
+	}
+	mlx_mouse_move(cu()->mlx, cu()->win, (WIDTH / 2), (HEIGHT / 2));
 }
