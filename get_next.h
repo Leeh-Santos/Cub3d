@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:22:47 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/04 20:25:03 by msimoes-         ###   ########.fr       */
+/*   Updated: 2023/12/26 21:53:55 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ size_t		ft_strlen(const char *word);
 char		*ft_strjoin(char const *s1, char const *s2);
 void		*ft_memset(void *b, int c, size_t len);
 char		*cpyfrm2(char *str, int i, int end);
-
+int	ft_strlennl(char *str);
+int	is_newline(char *str);
+char	*ft_get_line(char *buff, char *line);
 
 
 #endif

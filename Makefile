@@ -6,7 +6,7 @@
 #    By: learodri <learodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 12:24:03 by learodri@st       #+#    #+#              #
-#    Updated: 2023/12/26 18:21:29 by learodri         ###   ########.fr        #
+#    Updated: 2023/12/26 21:58:33 by learodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ NAME	= Cub3d
 
 CC		= cc
 
-CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 
 RM		= rm -rf
 
@@ -66,5 +66,5 @@ fclean: clean
 		$(RM) $(NAME) $(OBJS)
 
 re: fclean all
-
+	
 .PHONY: all clean fclean re

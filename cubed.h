@@ -6,7 +6,7 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:42:08 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/21 22:17:24 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/26 21:57:53 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_cu
 	double				dir_y;
 	double				plane_x;
 	double				plane_y;
-}t_cu;
+}		t_cu;
 
 typedef struct s_ray
 {

@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   free_err.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:00:24 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/19 12:01:28 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/26 21:31:45 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cubed.h"
+
+void	mlx_boom(void)
+{
+	if (cu()->img[0].ptr)
+		mlx_destroy_image(cu()->mlx, cu()->img[0].ptr);
+	if (cu()->img[1].ptr)
+		mlx_destroy_image(cu()->mlx, cu()->img[1].ptr);
+	if (cu()->img[2].ptr)
+		mlx_destroy_image(cu()->mlx, cu()->img[2].ptr);
+	if (cu()->img[3].ptr)
+		mlx_destroy_image(cu()->mlx, cu()->img[3].ptr);
+	if (cu()->mlx_img)
+		mlx_destroy_image(cu()->mlx, cu()->mlx_img);
+	//if (cu()->win)
+		//mlx_destroy_image(cu()->mlx, cu()->win);
+	if (cu()->mlx)
+	{
+		mlx_destroy_display(cu()->mlx);
+		free(cu()->mlx);
+	}
+}
 
 void	boom(char *str)
 {
@@ -25,6 +46,7 @@ void	boom(char *str)
 		i++;
 	}
 	free_matrix(cu()->o_mp);
+	mlx_boom();
 	// falta o rg talvez
 	exit(1);
 }

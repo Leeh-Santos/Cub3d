@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:22:23 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/10/24 12:25:15 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/26 22:01:55 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../get_next.h"
+
+
+/*char	*get_next_line(int fd)
+{
+	static char		buffer[BUFFER_SIZE + 1];
+	int				re;
+	char			*line;
+
+	if (fd < 0 || BUFFER_SIZE < 1)
+		return (NULL);
+	line = NULL;
+	while (1)
+	{		
+		re = 1;
+		if (!buffer[0])
+			re = read(fd, buffer, BUFFER_SIZE);
+		if (re > 0)
+			line = ft_get_line(buffer, line);
+		if (re < 1 || is_newline(buffer))
+			break ;
+	}
+	return (line);
+}*/
 
 struct s_gnl
 {
@@ -86,3 +109,5 @@ char	*get_next_line(int fd)
 	free(two.changer);
 	return (two.buf);
 }
+
+
