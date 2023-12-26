@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   varparse2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:58:48 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/19 12:00:46 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/26 19:50:17 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void	get_var(char *str)
 	if ((str[0] == 'W') && (str[1] == 'E') && (str[2] == ' '))
 		return (extract_var(str, WE));
 	if ((str[0] == 'F') && (str[1] == ' '))
-		return(extract_rgb(1, str));
-	if ((str[0] == 'C') && (str[1] == ' '))
 		return(extract_rgb(2, str));
+	if ((str[0] == 'C') && (str[1] == ' '))
+		return(extract_rgb(1, str));
 }
 
 char	*subs(int start, char *str)// \n aqui

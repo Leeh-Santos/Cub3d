@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:08:22 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/21 22:13:09 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/26 18:06:38 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	sprite_init(void) //all the 4 strutcs
 void	prep_and_init(void)
 {
 	cu()->mlx = mlx_init();
-	cu()->mlx_img = mlx_new_image(cu()->map, WIDTH, HEIGHT);
+	cu()->mlx_img = mlx_new_image(cu()->mlx, WIDTH, HEIGHT);
 	cu()->mlx_data = mlx_get_data_addr(cu()->mlx_img, \
 		&cu()->bits_pixel, &cu()->size_l, &cu()->endian);
 	player_position();

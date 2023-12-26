@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:40:29 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/14 16:41:00 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/26 18:23:47 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	wall_calc(void)
 			ray()->map_y += ray()->step_y;
 			ray()->side = 1;
 		}
-		if (cu()->map[ray()->map_x][ray()->map_y] == '1')
+		if (cu()->o_mp[ray()->map_x][ray()->map_y] == '1')
 			for_wall();
 	}
 }
@@ -86,7 +86,7 @@ void	draw_calc(void)
 	if (ray()->side == 0)
 		ray()->perpendicular = (ray()->map_x - cu()->pos_x \
 			+ (1 - ray()->step_x) / 2) / ray()->ray_x;
-	else
+	else	
 		ray()->perpendicular = (ray()->map_y - cu()->pos_y \
 			+ (1 - ray()->step_y) / 2) / ray()->ray_y;
 	ray()->line_h = (int)(HEIGHT / ray()->perpendicular);
@@ -107,16 +107,16 @@ void	draw_calc(void)
 
 void	wall_side(void)
 {
-	if (ray()->side_d == 0 && cu()->map[(int)ray()->map_x] \
+	if (ray()->side_d == 0 && cu()->o_mp[(int)ray()->map_x] \
 		[ray()->map_y] == '1')
 		cu()->wall_nbr = 0;
-	else if (ray()->side_d == 1 && cu()->map[(int)ray()->map_x] \
+	else if (ray()->side_d == 1 && cu()->o_mp[(int)ray()->map_x] \
 		[ray()->map_y] == '1')
 		cu()->wall_nbr = 1;
-	else if (ray()->side_d == 2 && cu()->map[(int)ray()->map_x] \
+	else if (ray()->side_d == 2 && cu()->o_mp[(int)ray()->map_x] \
 		[ray()->map_y] == '1')
 		cu()->wall_nbr = 2;
-	else if (ray()->side_d == 3 && cu()->map[(int)ray()->map_x] \
+	else if (ray()->side_d == 3 && cu()->o_mp[(int)ray()->map_x] \
 		[ray()->map_y] == '1')
 		cu()->wall_nbr = 3;
 }
