@@ -6,7 +6,7 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:48:16 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/26 21:46:41 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/27 21:22:47 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ char	**extract_file(char **map, int fd, int counter)
 	char	*str;
 
 	if (cu()->map)
+	{
 		free(cu()->map);
+		cu()->map = NULL;
+	}
 	str = get_next_line(fd);
 	if (str)
 		map = extract_file(map, fd, counter + 1);
@@ -113,10 +116,55 @@ void	search_vars(char **mtx)
 	vars_all_good();
 }
 
+/*int getnumber(int fd)
+{
+	char *str;
+	int i;
+
+	str = get_next_line(fd);
+	if (!str)
+		return 0;
+	i = 1;	
+	while (str)
+	{
+		free(str);
+		str = get_next_line(fd);
+		if (str)
+		{
+			i++;
+			continue;
+		}
+		if (!str)
+			return i;
+	}
+	return 0;
+}*/
+
+/*char	**get_file(int fd, int nb)
+{
+	char	**mtx;
+	int		i;
+	char 	*str;
+	
+	i = 0;
+	if (cu()->map)
+		free(cu()->map);
+	mtx = malloc(sizeof(char *) * (nb + 1));
+	while (i < nb)
+	{
+		str = get_next_line(fd);
+		mtx[i] = ft_strdup(str);
+		free(str);
+	}
+	
+	
+}*/
+
 void	check_4_parse(char *cufile)
 {
 	int	i;
 	int	fd;
+	//int n_mtx;
 
 	i = 0;
 	while (cufile[i])
@@ -130,6 +178,12 @@ void	check_4_parse(char *cufile)
 		boom("no able to open your cu           b3d file");
 	}
 	cu()->map = extract_file(NULL, fd, 0);
+	
+	/*if (!(n_mtx = getnumber(fd)))
+		boom("no even 1 str in map");
+	cu()->map = get_file(fd, n_mtx);
+	printf("ta aqui poha %d\n", n_mtx);
+	exit (1);*/
 	if (!cu()->map)
 		boom("mapa vaziozao\n");
 	close(fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:40:06 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/11 14:40:54 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/27 21:24:55 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	map_parse(char **mtx)
 	}
 	cu()->o_mp[i] = 0;
 	print_file(cu()->map);
-	free(cu()->map);
+	free_matrix(cu()->map);
 	printf("\n novo mapa abaixo \n");
 	print_file(cu()->o_mp);
 }

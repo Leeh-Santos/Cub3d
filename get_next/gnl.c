@@ -6,36 +6,14 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:22:23 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/26 22:01:55 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/27 17:49:39 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../get_next.h"
 
 
-/*char	*get_next_line(int fd)
-{
-	static char		buffer[BUFFER_SIZE + 1];
-	int				re;
-	char			*line;
-
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (NULL);
-	line = NULL;
-	while (1)
-	{		
-		re = 1;
-		if (!buffer[0])
-			re = read(fd, buffer, BUFFER_SIZE);
-		if (re > 0)
-			line = ft_get_line(buffer, line);
-		if (re < 1 || is_newline(buffer))
-			break ;
-	}
-	return (line);
-}*/
-
-struct s_gnl
+/*struct s_gnl
 {
 	char	*buf;
 	char	*changer;
@@ -108,6 +86,97 @@ char	*get_next_line(int fd)
 		buf = cpyfrm2(two.changer, 0, -1);
 	free(two.changer);
 	return (two.buf);
+}*/
+
+char	*line_only(char *memorycard)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	if (!memorycard[i])
+		return (NULL);
+	while (memorycard[i] && memorycard[i] != '\n')
+		i++;
+	str = (char *)malloc(sizeof(char) * (i + 2));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (memorycard[i] && memorycard[i] != '\n')
+	{
+		str[i] = memorycard[i];
+		i++;
+	}
+	if (memorycard[i] == '\n')
+	{
+		str[i] = memorycard[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 
+char	*rest4next(char *memorycard)
+{
+	int		i;
+	int		j;
+	char	*s;
 
+	i = 0;
+	while (memorycard[i] && memorycard[i] != '\n')
+		i++;
+	if (!memorycard[i])
+	{
+		free(memorycard);
+		return (NULL);
+	}
+	s = (char *)malloc(sizeof(char) * (ft_strlen(memorycard) - i + 1));
+	if (!s)
+		return (NULL);
+	i++;
+	j = 0;
+	while (memorycard[i])
+		s[j++] = memorycard[i++];
+	s[j] = '\0';
+	free(memorycard);
+	return (s);
+}
+
+char	*readuntillinebr(int fd, char *memorycard)
+{
+	char	*buff;
+	int		byte_check;
+
+	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buff)
+		return (NULL);
+	byte_check = 1;
+	while (!ft_strchr(memorycard, '\n') && byte_check != 0)
+	{
+		byte_check = read(fd, buff, BUFFER_SIZE);
+		if (byte_check == -1)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[byte_check] = '\0';
+		memorycard = ft_strjoin(memorycard, buff);
+	}
+	free(buff);
+	return (memorycard);
+}
+
+char	*get_next_line(int fd)
+{
+	char		*line;
+	static char	*memorycard;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	memorycard = readuntillinebr(fd, memorycard);
+	if (!memorycard)
+		return (NULL);
+	line = line_only(memorycard);
+	memorycard = rest4next(memorycard);
+	return (line);
+}

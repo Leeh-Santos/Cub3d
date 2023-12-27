@@ -6,7 +6,7 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:42:08 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/26 21:57:53 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/27 17:53:17 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_img
 typedef struct s_cu
 {
     char 	**map;
+	char *str;
 	char 	**o_mp;
 	char 	*vars[4];
 	t_img	img[4];

@@ -6,7 +6,7 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:23:23 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/26 22:01:31 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/27 17:50:02 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include "../get_next.h"
 
-char	*cpyfrm2(char *str, int start, int end)
+/*char	*cpyfrm2(char *str, int start, int end)
 {
 	char	*cpy;
 	int		citer;
@@ -102,67 +102,62 @@ void	*ft_memset(void *b, int c, size_t len)
 		i++;
 	}
 	return (b);
-}
+}*/
 
-/*int	ft_strlennl(char *str)
+size_t	ft_strlen(char *str)
 {
-	int	i;
+	size_t	c;
 
+	c = 0;
 	if (!str)
 		return (0);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			break ;
-		i++;
-	}
-	return (i);
+	while (str[c] != '\0')
+		c++;
+	return (c);
 }
 
-int	is_newline(char *str)
+char	*ft_strchr(char *s, int c)
 {
 	int	i;
-	int	j;
-	int	ret;
 
 	i = 0;
-	ret = 0;
-	j = 0;
-	while (str[i])
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
 	{
-		if (ret)
-			str[j++] = str[i];
-		if (str[i] == '\n')
-			ret = 1;
-		str[i] = 0;
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
 		i++;
 	}
-	return (ret);
+	return (0);
 }
 
-char	*ft_get_line(char *buff, char *line)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int		i;
-	int		j;
-	int		buff_size;
-	char	*temp;
+	size_t	i;
+	size_t	c;
+	char	*str;
 
-	buff_size = ft_strlennl(buff);
-	temp = malloc(sizeof(char) * (buff_size + ft_strlennl(line) + 1));
-	if (!temp)
-		return (NULL);
-	i = 0;
-	while (line && line[i])
+	if (!s1)
 	{
-		temp[i] = line[i];
-		i++;
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
 	}
-	j = 0;
-	while (j < buff_size)
-		temp[i++] = buff[j++];
-	temp[i] = '\0';
-	if (line)
-		free (line);
-	return (temp);
-}*/
+	if (!s1 || !s2)
+		return (NULL);
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	c = 0;
+	if (s1)
+		while (s1[++i] != '\0')
+			str[i] = s1[i];
+	while (s2[c] != '\0')
+		str[i++] = s2[c++];
+	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	free(s1);
+	return (str);
+}
