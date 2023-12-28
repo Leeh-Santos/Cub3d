@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: learodri@student.42.fr <learodri>          +#+  +:+       +#+        */
+/*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 20:17:07 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/10/31 16:44:15 by learodri@st      ###   ########.fr       */
+/*   Updated: 2023/12/28 20:30:34 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ long int	ft_atoi(const char *str)
 		i++;
 	}
 	if (str[i])
-		return (-1);
+		return (num * neg); // return num aqui tava -1 
 	return (num * neg);
 }

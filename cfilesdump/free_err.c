@@ -6,7 +6,7 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:00:24 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/26 21:31:45 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:05:14 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ void	free_matrix(char **matrix)
 
 void	endcu(void)
 {
-	boom("cabou");
+	boom("bye bye cu                 b3d");
 }

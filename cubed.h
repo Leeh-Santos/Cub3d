@@ -6,7 +6,7 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:42:08 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/27 17:53:17 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:52:16 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,10 @@ int		invalid_char(char **mtx);
 int		check_map(char **mtx);
 int		invalid_border(char **mtx);
 int		invalid_player(char **mtx);
-void	map_parse(char **mtx);
+void	map_parse(char **mtx, int i);
+void	check_var_rgb(int f_c);
+void	check_char_rgb(char *tmp, int i);
+char	*subs2(int start, char *str);
 //struct
 
 //render 

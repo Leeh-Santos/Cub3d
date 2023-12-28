@@ -6,7 +6,7 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:40:06 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/27 21:24:55 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:09:23 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ int		invalid_player(char **mtx)
 	return (1);
 }
 
-void	map_parse(char **mtx)
+void	map_parse(char **mtx, int i)
 {
-	int i;
 	int tmp;
 	
-	i = 0;
 	tmp = cu()->i_mp;
 	while (mtx[tmp])
 	{

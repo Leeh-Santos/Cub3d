@@ -6,7 +6,7 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:20 by learodri          #+#    #+#             */
-/*   Updated: 2023/12/26 18:22:19 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:19:03 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ void	game_hook(void)
 
 int	main(int argc, char *argv[])
 {
-	
 	if (argc != 2)
 		boom("deu ruim nos args");
 	check_4_parse(argv[1]);
-	map_parse(cu()->map);
+	map_parse(cu()->map, 0);
 	if (check_map(cu()->o_mp))
 		boom("missconfig on the o_mp");
 	prep_and_init();

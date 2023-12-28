@@ -6,27 +6,54 @@
 /*   By: learodri <learodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:58:48 by learodri@st       #+#    #+#             */
-/*   Updated: 2023/12/26 19:50:17 by learodri         ###   ########.fr       */
+/*   Updated: 2023/12/28 21:11:28 by learodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cubed.h"
+
+int		last_value(char *str)
+{
+	int	i;
+	int	flag;
+
+	i = 0;
+	flag = 0;
+	while (str[i])
+	{
+		if (flag && (str[i] != ' '))
+			return (1);
+		if (ft_isdigit(str[i]))
+		{
+			flag++;
+			while (str[i] && ft_isdigit(str[i]))
+				i++;
+		}
+		if (str[i])
+			i++;
+	}
+	return (0);
+}
 
 void	check_rgbt(char **mtx, int f_c)
 {
 	int	r;
 	int	g;
 	int	b;
+	int flag;
 	
 	r = ft_atoi(mtx[0]);
 	g = ft_atoi(mtx[1]);
 	b = ft_atoi(mtx[2]);
 	
-	if (r < 0 || g < 0 || b < 0 || r > 255 || g > 255 || b > 255)
+	flag = last_value(mtx[2]);
+	if (r < 0 || g < 0 || b < 0 || r > 255 || g > 255 || b > 255 || flag)
 	{
 		free_matrix(mtx);
 		printf("r - %d   g - %d   b - %d\n", r, g, b);
-		boom("valor rgbt maior ou menor\n");
+		if (flag)
+			boom("last value  rgb f**ked up");
+		boom("check rgbt value bro\n");
 	}
 	printf("ta aqui : r - %d   g - %d   b - %d\n", r, g, b);
 	if (f_c == 1)
@@ -36,42 +63,19 @@ void	check_rgbt(char **mtx, int f_c)
 	free_matrix(mtx);
 }
 
+
 void	extract_rgb(int f_c, char *str)//cealing para 1 e floor para 2
 {
 	int		i;
 	char	*tmp;
 	char	**rg;
 	
-	if (f_c == 1)
-	{
-		if (cu()->c != -1)
-			boom("ja tem var c ou f\n");
-	}
-	if (f_c == 2)
-	{
-		if (cu()->f != -1)
-			boom("ja tem var c ou f\n");
-	}
+	check_var_rgb(f_c);
 	i = 2;
 	while (str[i] && str[i] == ' ')
 		i++;
-	tmp = subs(i, str); // atencao se a var tiver 255, 25, 5
-	
-	i = 0;
-	while (tmp[i])
-	{
-		if (tmp[i] == ',' || tmp[i] == '\n')
-		{
-			i++;
-			continue;
-		}
-		if (!ft_isdigit(tmp[i]))
-		{
-			printf("%c", tmp[i]);
-			boom("problema no formato rgbt+\n"); // free aqui
-		}
-		i++;
-	}
+	tmp = subs2(i, str); // atencao se a var tiver 255, 25, 5
+	check_char_rgb(tmp, 0);
 	rg = ft_split(tmp, ',');
 	free(tmp);
 	i = 0;
@@ -79,7 +83,7 @@ void	extract_rgb(int f_c, char *str)//cealing para 1 e floor para 2
 		i++;
 	if (i != 3)
 	{
-		boom("rgbt ta diferente de tres\n");
+		boom("rgbt ta different than 3\n");
 		free_matrix(rg);
 	}
 	check_rgbt(rg, f_c);
@@ -113,7 +117,7 @@ char	*subs(int start, char *str)// \n aqui
 	newstr = malloc(sizeof(char) * ft_strlen(str) - start);
 	if (!newstr)
 		return (NULL);
-	while (str[start] && (str[start] != '\n') && (str[start] != ' ')) //nmb\n aqui
+	while (str[start] && (str[start] != '\n') && (str[start] != ' ')) 
 	{
 		newstr[i] = str[start];
 		start++;
@@ -133,5 +137,4 @@ void		extract_var(char *str, int var)
 	while (str[i] && str[i] == ' ')
 		i++;
 	cu()->vars[var] = subs(i, str);
-	
 }

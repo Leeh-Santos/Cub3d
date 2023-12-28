@@ -6,7 +6,7 @@
 #    By: learodri <learodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 12:24:03 by learodri@st       #+#    #+#              #
-#    Updated: 2023/12/27 18:01:20 by learodri         ###   ########.fr        #
+#    Updated: 2023/12/28 20:19:43 by learodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS	= main.c \
 
 OBJS	= $(SRCS:.c=.o)
 
-NAME	= Cub3d
+NAME	= cub3D
 
 CC		= cc
 
